@@ -1,6 +1,7 @@
 require 'refinerycms-dragonfly-delayed/image_resizer'
 require 'refinerycms-dragonfly-delayed/thumb'
 require 'dragonfly'
+require 'delayed_job_active_record'
 
 ::Dragonfly[:refinery_images].configure do |config|
   config.server.before_serve do |job, env|

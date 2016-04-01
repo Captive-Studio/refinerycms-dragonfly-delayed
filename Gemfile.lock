@@ -3,6 +3,7 @@ PATH
   specs:
     refinerycms-dragonfly-delayed (0.0.1)
       activerecord (~> 3.2.22)
+      dragonfly (~> 0.9.14)
 
 GEM
   remote: https://rubygems.org/
@@ -21,9 +22,13 @@ GEM
     arel (3.0.3)
     builder (3.0.4)
     diff-lcs (1.2.5)
+    dragonfly (0.9.15)
+      multi_json (~> 1.0)
+      rack
     i18n (0.7.0)
     multi_json (1.11.2)
     power_assert (0.2.7)
+    rack (1.6.4)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
       rspec-expectations (~> 3.4.0)

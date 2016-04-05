@@ -11,8 +11,8 @@ Gem::Specification.new do |s|
   s.add_dependency             'dragonfly', '~> 0.9.14'
   s.add_dependency             'delayed_job_active_record'
 
-  s.add_development_dependency 'rspec'
   s.add_development_dependency 'test-unit'
-  s.add_development_dependency 'shoulda-matchers'
   s.add_development_dependency 'sqlite3'
+  s.add_development_dependency 'refinerycms-testing', '~> 2.1.0.dev'
+  
 end

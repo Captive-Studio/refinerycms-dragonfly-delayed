@@ -1,0 +1,6 @@
+#!/bin/sh -ex
+
+bundle install
+rm -Rf spec/dummy
+bundle exec rake refinery:testing:dummy_app
+bundle exec rake spec

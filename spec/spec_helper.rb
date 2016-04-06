@@ -18,6 +18,8 @@ RSpec.configure do |config|
   config.expose_current_running_example_as :example
   config.infer_spec_type_from_file_location!
 
+  config.include FactoryGirl::Syntax::Methods
+
   config.backtrace_exclusion_patterns = [
     /\/lib\d*\/ruby\//,
     /bin\//,

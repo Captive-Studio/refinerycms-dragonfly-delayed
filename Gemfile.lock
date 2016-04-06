@@ -224,6 +224,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  factory_girl_rails
   refinerycms (~> 2.1.5)
   refinerycms-dragonfly-delayed!
   refinerycms-testing (~> 2.1.0.dev)

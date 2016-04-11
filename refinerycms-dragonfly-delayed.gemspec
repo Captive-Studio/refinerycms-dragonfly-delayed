@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.email       = 'ninja@captive.fr'
   s.license     = 'MIT'
   
-  s.add_dependency             'activerecord', '~> 3.2.22'
+  s.add_dependency             'activerecord', '~> 3.2.19'
   s.add_dependency             'dragonfly', '~> 0.9.14'
   s.add_dependency             'delayed_job_active_record'
 

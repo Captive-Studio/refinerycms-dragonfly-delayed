@@ -6,6 +6,9 @@ Gem::Specification.new do |s|
   s.authors     = ['Captive Studio Dev Team']
   s.email       = 'ninja@captive.fr'
   s.license     = 'MIT'
+  s.require_paths     = %w(lib)
+  s.files             = Dir["{app,config,db,lib}/**/*"] + ["Readme.md"]
+  
   
   s.add_dependency             'activerecord', '~> 3.2.19'
   s.add_dependency             'dragonfly', '~> 0.9.14'
@@ -13,5 +16,5 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'test-unit'
   s.add_development_dependency 'sqlite3'
-  s.add_development_dependency 'refinerycms-testing', '~> 2.1.0.dev'
+  s.add_development_dependency 'refinerycms-testing', '~> 2.1.0'
 end

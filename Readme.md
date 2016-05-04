@@ -11,7 +11,7 @@ Refinery CMS 2.x
 Open up your ``Gemfile`` and at the bottom, add this line:
 
 ```ruby
-gem 'refinerycms-dragonfly-delayed', github: 'Captive-Studio/refinerycms-dragonfly-delayed'
+gem 'refinerycms-dragonfly-delayed'
 ```
 
 Now, run ``bundle install``

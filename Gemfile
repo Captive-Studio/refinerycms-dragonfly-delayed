@@ -9,6 +9,7 @@ git 'https://github.com/refinery/refinerycms.git', :branch => 'master' do
   end
 end
 
-group :test do
-  # gem 'shoulda-matchers', '~> 2.8', require: false
+group :development, :test do
+  gem 'listen'
+  gem 'shoulda-matchers', '~> 3.1'
 end

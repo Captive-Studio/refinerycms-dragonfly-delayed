@@ -4,8 +4,6 @@ module Refinery
     class Thumb < ActiveRecord::Base
       self.table_name = 'thumbs'
       
-      attr_accessible :generated, :signature, :uid
-  
       validates :signature, presence: true, uniqueness: true
       validates :uid, uniqueness: {allow_nil: true}
   

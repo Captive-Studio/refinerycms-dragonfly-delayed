@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 feature 'Resized images' do
+  
+  before do
+    Dragonfly.app(:refinery_images).datastore.server_root = 'public'
+  end
 
   scenario 'resize in a background job' do
     image = create :image
@@ -30,12 +34,14 @@ feature 'Resized images' do
     expect(current_path).to eq image.image.remote_url
   end
 
-  scenario 'does not register resizing job and returns status 404 if original image does not exist' do
-    expect {
-      wrong_url = '/system/images/W1siZiIsIjIwMTUvMDcvMzEvMTAvMjcvNDkvOTQvYmFja2dyb3VuZC5qcGciXV0/background.jpg'
-      visit wrong_url
-    }.to_not change{Delayed::Job.count}
-    expect(page.status_code).to eq 404
+  context 'original image does not exist' do
+    it 'does not register resizing job and returns status 404' do
+      expect {
+        wrong_url = '/system/images/W1siZiIsIjIwMTUvMDcvMzEvMTAvMjcvNDkvOTQvYmFja2dyb3VuZC5qcGciXV0/background.jpg'
+        visit wrong_url
+      }.to_not change{Delayed::Job.count}
+      expect(page.status_code).to eq 404
+    end
   end
 
 end

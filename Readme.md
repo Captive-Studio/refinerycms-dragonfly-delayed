@@ -4,7 +4,7 @@ Generate Images Thumbnails in background processing jobs
 
 ## Requirements
 
-Refinery CMS 2.x
+Refinery CMS 4.x
 
 ## Install
 

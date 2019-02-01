@@ -23,6 +23,7 @@ module Refinery
           throw :halt, [ 404, {}, [] ] if original_image.blank?
 
           ImageResizer.register_job_to_process job
+          original_image.image.remote_url
         end
         throw :halt, [ 302, {'Location' => location}, [] ]
       end

@@ -22,6 +22,10 @@ module Refinery
           original_image = Refinery::Image.where(image_uid: fetch.uid).first
           throw :halt, [ 404, {}, [] ] if original_image.blank?
 
+          if images_app.datastore.is_a? ::Dragonfly::FileDataStore
+            images_app.datastore.server_root = 'public'
+          end
+
           ImageResizer.register_job_to_process job
           original_image.image.remote_url
         end
@@ -29,9 +33,5 @@ module Refinery
       end
     end
     
-    if images_app.datastore.is_a? ::Dragonfly::FileDataStore
-      images_app.datastore.server_root = 'public'
-    end
-
   end
 end

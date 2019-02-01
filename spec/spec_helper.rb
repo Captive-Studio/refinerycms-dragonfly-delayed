@@ -12,13 +12,12 @@ Rails.backtrace_cleaner.remove_silencers!
 
 RSpec.configure do |config|
   config.mock_with :rspec
-  config.treat_symbols_as_metadata_keys_with_true_values = true
   config.filter_run :focus => true
   config.run_all_when_everything_filtered = true
   config.expose_current_running_example_as :example
   config.infer_spec_type_from_file_location!
 
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 
   config.backtrace_exclusion_patterns = [
     /\/lib\d*\/ruby\//,
@@ -35,4 +34,11 @@ end
   Dir[File.join(p, 'spec', 'support', '**', '*.rb').to_s]
 }.flatten.sort.each do |support_file|
   require support_file
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :active_record
+  end
 end

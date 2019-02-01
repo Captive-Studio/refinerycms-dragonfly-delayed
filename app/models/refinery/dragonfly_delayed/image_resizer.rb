@@ -4,9 +4,9 @@ module Refinery
     class ImageResizer
       class << self
         def resize_images_in_queue
-          dragonfly_app = ::Dragonfly[:refinery_images]
+          dragonfly_app = ::Dragonfly.app(:refinery_images)
           Thumb.where(generated: false).find_each do |thumb|
-            job = Dragonfly::Job.deserialize thumb.signature, dragonfly_app
+            job = ::Dragonfly::Job.deserialize thumb.signature, dragonfly_app
             uid = job.store
             thumb.update_attributes uid: uid, generated: true
           end

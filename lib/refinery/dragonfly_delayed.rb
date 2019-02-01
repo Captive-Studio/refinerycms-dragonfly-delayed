@@ -11,13 +11,13 @@ module Refinery
   module DragonflyDelayed
     require 'refinery/dragonfly_delayed/engine'
     
-    ::Dragonfly[:refinery_images].configure do |config|
-      config.server.before_serve do |job, env|
+    ::Dragonfly.app(:refinery_images).configure do
+      before_serve do |job, env|
         already_generated_thumb = Thumb.where(signature: job.serialize, generated: true).first
         location = if already_generated_thumb.present?
-          ::Dragonfly[:refinery_images].datastore.url_for(already_generated_thumb.uid)
+          ::Dragonfly.app(:refinery_images).datastore.url_for(already_generated_thumb.uid)
         else
-          fetch = job.steps.select {|job| job.is_a? Dragonfly::Job::Fetch}.first
+          fetch = job.steps.select {|j| j.is_a? ::Dragonfly::Job::Fetch}.first
           original_image = Refinery::Image.where(image_uid: fetch.uid).first
           throw :halt, [ 404, {}, [] ] if original_image.blank?
 

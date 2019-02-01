@@ -1,4 +1,4 @@
-class CreateThumbs < ActiveRecord::Migration
+class CreateThumbs < ActiveRecord::Migration[4.2]
   def change
     create_table :thumbs do |t|
       t.string :signature

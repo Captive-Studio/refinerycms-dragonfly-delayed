@@ -9,7 +9,7 @@ module Refinery
   
       def store!
         dragonfly_app = ::Dragonfly.app(:refinery_images)
-        job = Dragonfly::Job.deserialize signature, dragonfly_app
+        job = ::Dragonfly::Job.deserialize signature, dragonfly_app
         uid = job.store
         update_attributes uid: uid, generated: true
         p "[#{Time.now}] Resized #{uid}"

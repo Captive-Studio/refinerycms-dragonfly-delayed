@@ -26,8 +26,9 @@ module Refinery
           original_image = Refinery::Image.where(image_uid: fetch.uid).first
           throw :halt, [ 404, {}, [] ] if original_image.blank?
 
-          ImageResizer.register_job_to_process job
-          original_image.image.remote_url
+          thumb = ImageResizer.register_job_to_process job
+          thumb.store!
+          images_app.datastore.url_for(thumb.uid)
         end
         throw :halt, [ 302, {'Location' => location}, [] ]
       end

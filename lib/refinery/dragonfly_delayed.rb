@@ -14,6 +14,10 @@ module Refinery
 
     images_app.configure do
       before_serve do |job, env|
+        if images_app.datastore.is_a? ::Dragonfly::FileDataStore
+          images_app.datastore.server_root = 'public'
+        end
+
         already_generated_thumb = Thumb.where(signature: job.serialize, generated: true).first
         location = if already_generated_thumb.present?
           images_app.datastore.url_for(already_generated_thumb.uid)
@@ -21,10 +25,6 @@ module Refinery
           fetch = job.steps.select {|j| j.is_a? ::Dragonfly::Job::Fetch}.first
           original_image = Refinery::Image.where(image_uid: fetch.uid).first
           throw :halt, [ 404, {}, [] ] if original_image.blank?
-
-          if images_app.datastore.is_a? ::Dragonfly::FileDataStore
-            images_app.datastore.server_root = 'public'
-          end
 
           ImageResizer.register_job_to_process job
           original_image.image.remote_url

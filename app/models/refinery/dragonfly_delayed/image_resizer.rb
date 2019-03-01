@@ -18,6 +18,7 @@ module Refinery
             thumb.save
             thumb.delay.store!
           end
+          thumb
         end
       end
     end
